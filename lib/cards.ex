@@ -34,7 +34,8 @@ defmodule Cards do
   end
 
   def deal(deck, hand_size) do
-    Enum.split(deck, hand_size)
+    {hand, rest} = Enum.split(deck, hand_size)
+    hand
   end
 
   def save(deck, filename) do
@@ -49,4 +50,9 @@ defmodule Cards do
     end
   end
 
+  def create_hand(hand_size) do
+    Cards.create_deck()
+    |> Cards.shuffle()
+    |> Cards.deal(hand_size)
+  end
 end
